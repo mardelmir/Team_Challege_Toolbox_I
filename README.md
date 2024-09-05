@@ -1,6 +1,6 @@
-# Team_Challege_Toolbox_I
+# Team Challege: Toolbox I
 
-### Function list:
+### List of functions:
 * describe_df()
 * tipifica_variable()
 * get_features_num_regression()
