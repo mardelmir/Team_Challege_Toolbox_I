@@ -6,6 +6,24 @@ This repository contains the deliverables for the first part of the team challen
 
 This module will be used in the second part of the challenge to solve a practical Machine Learning problem.
 
+### Deliverables
+
+1. **Python script**: `toolbox_ML.py`
+
+  - This script contains the implementations of the required functions.
+  - Each function is properly commented and includes a **docstring** with a description of its  usage, parameters, and return values.
+  - 
+2. **Example code**:
+
+  - The group has designed an example that demonstrates the usage of the functions.
+  - This example is provided in a separate notebook or script in the repository, showcasing how the functions can be applied to a dataset.
+    
+3. **Presentation**:
+
+  - A brief presentation that describes the code and demonstrates the example.
+  - This presentation explains the motivation behind the design decisions and provides insights into the utility of the functions.
+
+
 ### List of functions:
 * describe_df()
 * tipifica_variable()
