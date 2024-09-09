@@ -35,15 +35,15 @@ The following functions have been developed as part of the `toolbox_ML.py` modul
     - **Purpose**: Suggests a variable type (binary, categorical, continuous, or discrete) based on the cardinality of each column in the dataframe.
     - **Returns**: A dataframe with two columns: nombre_variable (variable name) and tipo_sugerido (suggested type).
       
-3. `get_features_num_regression(df, target_col, umbral_corr, pvalue = None)`
+3. `get_features_num_regression(df, target_col, umbral_corr, pvalue = None, card = 20)`
     - **Purpose**: Identifies numerical columns whose correlation with the target column exceeds a specified threshold. Optionally, it can also filter by statistical significance.
     - **Returns**: A list of numerical columns meeting the correlation and statistical significance criteria.
       
-4. `plot_features_num_regression(df, target_col = "", columns = [], umbral_corr = 0, pvalue = None)`
+4. `plot_features_num_regression(df, target_col = "", card = 20, columns = [], umbral_corr = 0, pvalue = None)`
     - **Purpose**: Generates pair plots of numerical features that meet the correlation and statistical significance criteria, using `target_col` as a reference. It splits large sets of columns into multiple pair plots if needed.
     - **Returns**: The list of columns that meet the plotting criteria.
       
-5. `get_features_cat_regression(df, target_col, pvalue = 0.05)`
+5. `get_features_cat_regression(df, target_col, pvalue = 0.05, card = 20)`
     - **Purpose**: Identifies categorical columns that have a statistically significant relationship with the target column, using appropriate hypothesis tests.
     - **Returns**: A list of categorical columns that meet the statistical significance criteria.
       
