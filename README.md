@@ -16,7 +16,7 @@ This module will be used in the second part of the challenge to solve a practica
 2. **Example code**:
 
     - The group has designed an example that demonstrates the usage of the functions.
-      - This example is provided in a separate notebook or script in the repository, showcasing how the functions can be applied to a dataset.
+    - This example is provided in a separate notebook or script in the repository, showcasing how the functions can be applied to a dataset.
     
 3. **Presentation**:
 
@@ -51,10 +51,6 @@ The following functions have been developed as part of the `toolbox_ML.py` modul
     - **Purpose**: Generates histograms of categorical features grouped by the values of the target column, for features that meet the statistical significance criteria.
     - **Returns**: The list of columns that meet the plotting criteria.
 
+### Next steps
 
-### List of functions:
-* describe_df()
-* tipifica_variable()
-* get_features_num_regression()
-* plot_features_num_regression()
-* get_features_cat_regression()
+This module serves as the foundation for the second part of the challenge, where the team will apply these functions to a real Machine Learning problem, further refining and expanding the toolbox as needed.
