@@ -31,7 +31,7 @@ The following functions have been developed as part of the `toolbox_ML.py` modul
    - **Purpose**: Analyzes a dataframe and returns a summary of each column's data type, percentage of missing values, number of unique values, and percentage of cardinality.
     - **Returns**: A dataframe summarizing the characteristics of each column.
       
-2. `tipifica_variables(df, umbral_categoria, umbral_continua)`
+2. `tipifica_variables(df, umbral_categoria, umbral_continua, show_cardinality = False, show_percentage = False)`
     - **Purpose**: Suggests a variable type (binary, categorical, continuous, or discrete) based on the cardinality of each column in the dataframe.
     - **Returns**: A dataframe with two columns: nombre_variable (variable name) and tipo_sugerido (suggested type).
       
