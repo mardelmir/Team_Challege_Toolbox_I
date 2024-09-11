@@ -391,13 +391,13 @@ def plot_features_cat_regression(df, target_col="", columns=[], pvalue=0.05, wit
     If specific categorical columns are not specified, the function will filter the categorical columns in the DataFrame 
     based on a significance test with the target column.
     
-    Parameters
-    ----------
-    df: pd.DataFrame
+    Parameters:
+    -----------
+    df (pd.DataFrame): 
         DataFrame containing the data.
-    target_col: str
+    target_col (str): 
         The target column to plot histograms for, should be numeric.
-    columns: list of str
+    columns (list of str): 
         List of categorical columns to consider for histograms. If empty, will use all categorical columns.
     pvalue (float, optional, Default=0.05): 
         Significance level (between 0 and 1) for the statistical test.
@@ -406,40 +406,30 @@ def plot_features_cat_regression(df, target_col="", columns=[], pvalue=0.05, wit
     card (int): 
         Cardinality threshold for determining if a column is considered categorical.
     
-    Returns
-    -------
-    list: valid_columns
+    Returns:
+    --------
+    list (valid_columns): 
         List of columns that met the significance level.
     """
     
     # Carry out input data checks
-    # 1. Check df is a dataframe
+    #1. Check df is a dataframe
     if not isinstance(df, pd.DataFrame):
-       raise TypeError('First argument must be a Pandas DataFrame.')
-
-    # 2. Check target_col is in DataFrame
-    if target_col not in df.columns:
-        raise ValueError(f'The target column "{target_col}" is not present in the DataFrame.')
+        raise TypeError('First argument must be a Pandas DataFrame.')
     
-    # 3. Check target_col is numeric and continuous (high cardinality)
-    if not pd.api.types.is_numeric_dtype(df[target_col]):
-        raise ValueError(f'The target column "{target_col}" must be numeric.')
+    #2. Check target_col is in DataFrame, and is numeric and continuous (high cardinality)
+    if target_col not in df.columns or not (pd.api.types.is_numeric_dtype(df[target_col]) and df[target_col].nunique() > card):
+        raise TypeError(f"The target column ('{target_col}') must be a numeric continuous variable with high cardinality.\nCheck 'card' value")
     
-    percentage_card = df[target_col].nunique() * 100
-    if percentage_card <= card:
-        print(f'The column "{target_col}" does not have sufficient cardinality. More than {card}% of unique values are required.')
-        return None
-
-    # 4. Check pvalue is float between 0 and 1
+    #3. Check pvalue is float between 0 and 1
     if not isinstance(pvalue, (int, float)) or not (0 <= pvalue <= 1):
         raise ValueError("'pvalue' must be a number between 0 and 1.")
 
-    
     # If no categorical columns are specified, get columns using function 'get_features_cat_regression()' using specified 'pvalue'
     if not columns:
-        columns = get_features_cat_regression(df = df, target_col = target_col, pvalue = pvalue, card = card)
+        columns = get_features_cat_regression(df=df, target_col=target_col, pvalue=pvalue, card=card)
     
-    # Get list of columns and remove target if present to plot histograms
+    # get list of columns and remove target if present to plot histograms
     valid_columns = []
     for col in columns:
         if col == target_col:
@@ -485,7 +475,7 @@ def plot_features_cat_regression(df, target_col="", columns=[], pvalue=0.05, wit
         # All histograms on 1 figure
         for i, col in enumerate(valid_columns):
             plt.subplot(num_rows, num_cols, i + 1) # Logic for number of rows and columns
-            sns.histplot(data = df, x = target_col, hue = col, element = 'step') # element='step' made the overlapping of histograms easier to understand visually
+            sns.histplot(data=df, x=target_col, hue=col, element='step') # element='step' made the overlapping of histograms easier to understand visually
             plt.title(f'{target_col} by {col}')
             plt.xlabel(target_col)
             plt.ylabel('Frequency')
@@ -496,8 +486,8 @@ def plot_features_cat_regression(df, target_col="", columns=[], pvalue=0.05, wit
     else:
         # Plot histograms individually
         for col in valid_columns:
-            plt.figure(figsize = (12, 6))
-            sns.histplot(data = df, x = target_col, hue = col, element = 'step')
+            plt.figure(figsize=(12, 6))
+            sns.histplot(data=df, x=target_col, hue=col, element='step')
             plt.title(f'Histogram of {target_col} grouped by {col}')
             plt.xlabel(target_col)
             plt.ylabel('Frequency')
