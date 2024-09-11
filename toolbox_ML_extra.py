@@ -96,10 +96,16 @@ def tipifica_variables_extra(df, umbral_categoria, umbral_continua, *, show_card
     # Validate input types
     if not isinstance(df, pd.DataFrame):
         raise TypeError(f'Parameter df must be a pandas DataFrame, but received {type(df).__name__}.')
-    if not isinstance(umbral_categoria, int):
+    if not isinstance(umbral_categoria, (int, float)):
         raise TypeError(f'Parameter umbral_categoria must be int, but received {type(umbral_categoria).__name__}.')
-    if not isinstance(umbral_continua, float):
+    if not isinstance(umbral_continua, (int, float)):
         raise TypeError(f'Parameter umbral_continua must be float, but received {type(umbral_continua).__name__}.')
+    
+    # Change types if needed
+    if isinstance(umbral_categoria, float):
+        umbral_categoria = int(umbral_categoria)
+    if isinstance(umbral_continua, int):
+        umbral_categoria = float(umbral_categoria)
 
     # Get the number of rows in the DataFrame
     num_rows = len(df) 
