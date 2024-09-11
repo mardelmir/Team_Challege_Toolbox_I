@@ -267,6 +267,21 @@ def plot_features_num_regression(df, target_col = '', columns = [], umbral_corr 
             # Check p-value significance if pvalue is provided
             if pvalue is None or p_val <= pvalue:
                 valid_columns.append(col)
+        # Check if the correlation meets the threshold
+        if abs(corr) > umbral_corr:
+            # Check p-value significance if pvalue is provided
+            if pvalue is None or p_val <= pvalue:
+                valid_columns.append(col)
+        else:
+            # Warn that column does not meet the required correlation threshold
+            print(f'"{col}" did not meet the correlation threshold of {umbral_corr}.')
+            # Ask if you want to remove the column or continue anyway
+            question = input(f'Do you want to remove "{col}" from the columns list or continue anyway? Type "remove" or "continue"').strip().lower()
+            if question == 'continue':
+                valid_columns.append(col) # adds column to valid_cols list if user types continue
+            elif question == 'remove':
+                print(f'"{col}" was removed from columns list')
+                continue
 
     # If no valid columns remain after filtering, return an empty list
     if not valid_columns:
